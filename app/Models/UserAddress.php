@@ -31,5 +31,9 @@ class UserAddress extends Model
         return "{$this->province}{$this->city}{$this->district}{$this->address}";
     }
 
+    public function create()
+    {
+        return view('user_addresses.create_and_edit', ['address' => new UserAddress()]);
+    }
 
 }
