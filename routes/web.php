@@ -1,6 +1,10 @@
 <?php
 
-Route::get('/', 'PagesController@root')->name('root');
+// Route::get('/', 'PagesController@root')->name('root');
+
+// 首页商品列表
+Route::redirect('/', '/products')->name('root');
+Route::get('products', 'ProductsController@index')->name('products.index');
 
 // 加入邮箱验证规则
 Auth::routes(['verify' => true]);
