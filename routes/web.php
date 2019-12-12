@@ -6,6 +6,10 @@
 Route::redirect('/', '/products')->name('root');
 Route::get('products', 'ProductsController@index')->name('products.index');
 
+// 商品详情页
+Route::get('products', 'ProductsController@index')->name('products.index');
+Route::get('products/{product}', 'ProductsController@show')->name('products.show');
+
 // 加入邮箱验证规则
 Auth::routes(['verify' => true]);
 
