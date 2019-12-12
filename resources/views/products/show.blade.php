@@ -23,7 +23,7 @@
           <div class="btn-group btn-group-toggle" data-toggle="buttons">
             @foreach($product->skus as $sku)
               <label
-      class="btn sku-btn"
+      class="btn sku-btn {{ $loop->first ? 'active' : '' }}"
       data-price="{{ $sku->price }}"
       data-stock="{{ $sku->stock }}"
       data-toggle="tooltip"
@@ -68,6 +68,8 @@
 <script>
   $(document).ready(function () {
     $('[data-toggle="tooltip"]').tooltip({trigger: 'hover'});
+    $('.product-info .stock').text('库存' + $('.sku-btn').data('stock') + '件');
+    $('.product-info .price span').text($('.sku-btn').data('price'));
     $('.sku-btn').click(function () {
       $('.product-info .price span').text($(this).data('price'));
       $('.product-info .stock').text('库存：' + $(this).data('stock') + '件');
