@@ -4,11 +4,12 @@
 
 // 首页商品列表
 Route::redirect('/', '/products')->name('root');
-Route::get('products', 'ProductsController@index')->name('products.index');
+Route::get('products', 'ProductsController@index')
+    ->name('products.index');
 
 // 商品详情页
-Route::get('products', 'ProductsController@index')->name('products.index');
-Route::get('products/{product}', 'ProductsController@show')->name('products.show');
+Route::get('products', 'ProductsController@index')
+    ->name('products.index');
 
 // 加入邮箱验证规则
 Auth::routes(['verify' => true]);
@@ -39,6 +40,11 @@ Route::group(['middleware' => ['auth', 'verified']], function(){
     Route::delete('products/{product}/favorite', 'ProductsController@disfavor')
         ->name('products.disfavor');
 
+    Route::get('products/favorites', 'ProductsController@favorites')
+        ->name('products.favorites');
 });
+
+Route::get('products/{product}', 'ProductsController@show')
+    ->name('products.show');
 
 
