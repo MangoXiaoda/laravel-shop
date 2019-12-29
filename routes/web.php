@@ -26,7 +26,7 @@ Route::group(['middleware' => ['auth', 'verified']], function(){
         ->name('user_addresses.store');
 
     Route::get('user_addresses/{user_address}', 'UserAddressesController@edit')
-        ->name('user_addresses.edit');
+        ->name('user_addresses.edit2');
 
     Route::put('user_addresses/{user_address}', 'UserAddressesController@update')
         ->name('user_addresses.update');
@@ -42,6 +42,9 @@ Route::group(['middleware' => ['auth', 'verified']], function(){
 
     Route::get('products/favorites', 'ProductsController@favorites')
         ->name('products.favorites');
+
+    Route::post('cart', 'CartController@add')
+        ->name('cart.add');
 });
 
 Route::get('products/{product}', 'ProductsController@show')
