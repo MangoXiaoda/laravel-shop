@@ -50,7 +50,11 @@ class CartController extends Controller
             ->with(['productSku.product'])
             ->get();
 
-        return view('cart.index', ['cartItems' => $cartItems]);
+        $addresses = $req->user()->addresses()
+            ->orderBy('last_used_at', 'desc')
+            ->get();
+
+        return view('cart.index', ['cartItems' => $cartItems, 'addresses' => $addresses]);
     }
 
 
