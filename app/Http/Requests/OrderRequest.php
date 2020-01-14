@@ -2,9 +2,10 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
+use App\Models\ProductSku;
 
-class OrderRequest extends FormRequest
+class OrderRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +14,7 @@ class OrderRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -39,7 +40,7 @@ class OrderRequest extends FormRequest
                         return $fail('该商品不存在');
                     }
 
-                    if (!$sku->product->on_sale()) {
+                    if (!$sku->product->on_sale) {
                         return $fail('该商品未上架');
                     }
 
