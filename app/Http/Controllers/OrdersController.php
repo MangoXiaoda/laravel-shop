@@ -8,6 +8,7 @@ use App\Models\UserAddress;
 use App\Models\Order;
 use Carbon\Carbon;
 use App\Exceptions\InvalidRequestException;
+use App\Jobs\CloseOrder;
 
 class OrdersController extends Controller
 {
@@ -68,6 +69,9 @@ class OrdersController extends Controller
 
             return $order;
         });
+
+        // 支付失败 恢复商品库存
+        $this->dispatch(new closeOrder($order, config('app.order_ttl')));
 
         return $order;
     }
