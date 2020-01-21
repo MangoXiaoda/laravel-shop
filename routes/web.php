@@ -11,6 +11,15 @@ Route::get('products', 'ProductsController@index')
 Route::get('products', 'ProductsController@index')
     ->name('products.index');
 
+// 临时测试支付
+Route::get('alipay', function(){
+    return app('alipay')->web([
+        'out_trade_no' => time(),
+        'total_amount' => '1',
+        'subject' => 'test subject - 测试',
+    ]);
+});
+
 // 加入邮箱验证规则
 Auth::routes(['verify' => true]);
 
