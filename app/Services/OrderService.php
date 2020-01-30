@@ -52,15 +52,15 @@ class OrderService
                 if ($sku->decreaseStock($data['amount']) <= 0) {
                     throw new InvalidRequestException('该商品库存不足');
                 }
-                // 更新订单总金额
-                $order->update(['total_amount' => $totalAmount]);
-
-                // 将下单的商品从购物车中移除
-                $skuIds = collect($items)->pluck('sku_id')->all();
-                app(CartService::class)->remove($skuIds);
-
-                return $order;
             }
+            // 更新订单总金额
+            $order->update(['total_amount' => $totalAmount]);
+
+            // 将下单的商品从购物车中移除
+            $skuIds = collect($items)->pluck('sku_id')->all();
+            app(CartService::class)->remove($skuIds);
+
+            return $order;
         });
 
         // 这里直接使用 dispatch 函数
