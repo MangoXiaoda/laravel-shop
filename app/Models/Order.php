@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Ramsey\Uuid\Uuid;
 
 class Order extends Model
 {
@@ -102,6 +103,21 @@ class Order extends Model
         return false;
     }
 
+    /**
+     * 生成退款订单编号
+     * @return string
+     * @throws \Exception
+     */
+    public static function getAvailableRefundNo()
+    {
+        do {
+            // Uuid类可以大概率生成不重复的字符串
+            $no = Uuid::uuid4()->getHex();
+            // 为了避免重复 生成之后在数据库中查询是否存在相同的退款订单编号
+        } while (self::query()->where('refund_no', $no)->exists());
+
+        return $no;
+    }
 
 
 }
