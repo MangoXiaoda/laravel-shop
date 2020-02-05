@@ -23,5 +23,6 @@ class VerifyCsrfToken extends Middleware
         'payment/alipay/notify',
         // 微信白名单
         'payment/wechat/notify',
+        'payment/wechat/refund_notify'
     ];
 }
