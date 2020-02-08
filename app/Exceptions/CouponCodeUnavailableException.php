@@ -2,7 +2,7 @@
 
 namespace App\Exceptions;
 
-use App\Http\Requests\Request;
+use Illuminate\Http\Request;
 use Exception;
 use Throwable;
 
@@ -13,7 +13,7 @@ class CouponCodeUnavailableException extends Exception
      * @param string $message
      * @param int $code
      */
-    public function __construct(string $message = "", int $code = 403)
+    public function __construct($message = "", int $code = 403)
     {
         parent::__construct($message, $code);
     }
