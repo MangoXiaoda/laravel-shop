@@ -35,7 +35,7 @@ Route::group(['middleware' => ['auth', 'verified']], function(){
         ->name('user_addresses.store');
 
     Route::get('user_addresses/{user_address}', 'UserAddressesController@edit')
-        ->name('user_addresses.edit2');
+        ->name('user_addresses.edit');
 
     Route::put('user_addresses/{user_address}', 'UserAddressesController@update')
         ->name('user_addresses.update');
